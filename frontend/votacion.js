@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 
     $enviarVoto = function (voto) {
-        var GETurl = "/vote/" + voto
+        var GETurl = "api/votes/" + voto
         $.ajax({
             type: "GET",
             url: GETurl,
