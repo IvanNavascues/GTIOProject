@@ -18,28 +18,19 @@ $(document).ready(function () {
         "15": "Salma De Diego"
     }
 
-    /*
+    
     $.ajax({
         type: "GET",
         url: "/votes",
         success: function (data) {
-            // depende de la estructura de data
             update(data)
         }
     });
-    */
-
-    var data = {
-        "nominado_uno": "07",
-        "nominado_dos": "04"
-    }
-    update(data)
 
     function update(data) {
         for (let i = 0; i < Object.keys(data).length; i++) {
 
-            var nominado = Object.keys(data)[i]
-            var id = data[nominado]
+            var id = Object.keys(data)[i]
             var img_source = "imagenes/" + id + ".webp"
             var nombre = leyenda[id]
 
