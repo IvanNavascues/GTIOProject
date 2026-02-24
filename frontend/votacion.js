@@ -15,8 +15,8 @@ $(document).ready(function () {
     })
 
 
-    $enviarVoto = function (voto) {
-        var GETurl = "api/votes/" + voto
+    function enviarVoto(voto) {
+        var GETurl = "vote/" + voto
         $.ajax({
             type: "GET",
             url: GETurl,
@@ -27,5 +27,6 @@ $(document).ready(function () {
 
 
     }
+
 
 });
