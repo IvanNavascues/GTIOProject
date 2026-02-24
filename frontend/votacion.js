@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 
     function enviarVoto(voto) {
-        var GETurl = "vote/" + voto
+        var GETurl = "http://localhost:5000/vote/" + voto
         $.ajax({
             type: "GET",
             url: GETurl,

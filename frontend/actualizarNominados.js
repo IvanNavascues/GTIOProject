@@ -1,15 +1,15 @@
 $(document).ready(function () {
 
     var leyenda = {
-        "01": "Carlos Fustel",
-        "02": "Claudia Arenas",
-        "03": "Cristina Lora",
-        "04": "Elena Matateyou",
-        "05": "Guille Toledano",
-        "06": "Guillo Rist",
-        "07": "Ivan Rojo",
-        "08": "JaviCrespo",
-        "09": "JuditGaruz",
+        "1": "Carlos Fustel",
+        "2": "Claudia Arenas",
+        "3": "Cristina Lora",
+        "4": "Elena Matateyou",
+        "5": "Guille Toledano",
+        "6": "Guillo Rist",
+        "7": "Ivan Rojo",
+        "8": "JaviCrespo",
+        "9": "JuditGaruz",
         "10": "Laura Munyoz",
         "11": "Lucia Casani",
         "12": "Maria Cruz",
@@ -21,14 +21,14 @@ $(document).ready(function () {
     
     $.ajax({
         type: "GET",
-        url: "/votes",
+        url: "http://localhost:5000/votes",
         success: function (data) {
             update(data)
         }
     });
 
     function update(data) {
-        for (let i = 0; i < Object.keys(data).length; i++) {
+        for (let i = 1; i < Object.keys(data).length; i++) {
 
             var id = Object.keys(data)[i]
             var img_source = "imagenes/" + id + ".webp"

@@ -17,6 +17,7 @@ INSERT INTO votes (`name`) VALUES ("Javier Crespo");
 INSERT INTO votes (`name`) VALUES ("Judit Garuz");
 INSERT INTO votes (`name`) VALUES ("Laura Munyoz");
 INSERT INTO votes (`name`) VALUES ("Lucia Casani");
+INSERT INTO votes (`name`) VALUES ("Maria Cruz");
 INSERT INTO votes (`name`) VALUES ("Martin Yanyez");
-INSERT INTO votes (`name`) VALUES ("Salma De Diego");
 INSERT INTO votes (`name`) VALUES ("Olivia Bay");
+INSERT INTO votes (`name`) VALUES ("Salma De Diego");

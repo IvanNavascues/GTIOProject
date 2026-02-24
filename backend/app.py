@@ -4,7 +4,7 @@ import mysql.connector
 from mysql.connector import errorcode
 
 app = Flask(__name__)
-CORS(app) 
+CORS(app, origins="*") 
 
 NO_CONN_ERROR = "No se puede conectar a la base de datos"
 
