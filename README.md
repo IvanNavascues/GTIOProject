@@ -1,13 +1,11 @@
 # GTIOProject
-- ¿Cómo es la organización de un equipo de desarrollo, mantenimiento y operaciones del proyecto votación?
-- ¿Quiénes son los miembros del equipo y cuáles son sus roles?
-- ¿Cuáles son las herramientas de gestión del proyecto?
-- ¿Cuáles son las herramientas de gestión de la configuración del proyecto?
-- ¿Cómo se plantea la arquitectura del programa? Se requiere un acercamiento inicial a la arquitectura del sistema.
-- ¿Cuáles son los servicios/microservicios de los que consiste el sistema votación?
-- ¿Cómo es la metodología y buenas prácticas utilizadas en el desarrollo de un proyecto votación?
-- ¿Cómo se despliega el sistema en un entorno de test local? Se requiere una pequeña guía de explicación de como levantar el programa.
-- ¿Cómo se prueba la funcionalidad del sistema en un entorno de test local?
-- ¿Cuáles son los Dockerfiles utilizados para cada microservicio?
-- ¿Cuál es la configuración del Docker Compose para levantar el sistema?
-- ¿Por qué es escalable y elástica la solución?
+## Instrucciones de despliegue (local)
+- Clona el repositorio.
+- Inicia docker-engine en tu PC (en su defecto, directamente Docker Desktop)
+- En la raiz del proyecto, ejecuta "docker compose up -d".
+- Una vez creados, los siguiente servicios estarán disponibles.
+
+## Servicios desplegados
+- MySQL Server -> localhost:3066
+- API Rest (Python Flask) -> localhost:5000
+- Frontend (html+jquery) -> localhost:8002

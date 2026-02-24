@@ -1,0 +1,36 @@
+services:
+  mysql-db:
+    image: "mysql:9.6.0"
+    environment:
+      MYSQL_DATABASE: 'votacion'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_ROOT_HOST: '%'
+    secrets:
+      - db_password
+      - db_root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./mysql_docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: --sql_mode=""
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql-db
+  frontend:
+    build: ./frontend
+    ports:
+      - "8082:80"
+    depends_on:
+      - backend
+
+secrets:
+   db_password:
+     file: ./run/secrets/db_password.txt
+   db_root_password:
+     file: ./run/secrets/db_root_password.txt
