@@ -1,24 +1,28 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import mysql.connector
+from mysql.connector import errorcode
 
 app = Flask(__name__)
 CORS(app) 
 
-# Configuración de la base de datos
-db_config = {
-    'host': 'localhost',
-    'user': 'root',  # Cambiar
-    'password': '*Project26',  # Cambiar
-    'database': 'votacion'
-}
+NO_CONN_ERROR = "No se puede conectar a la base de datos"
 
 def get_db_connection():
     """Obtiene una conexión a la base de datos"""
     try:
-        return mysql.connector.connect(**db_config)
+        return mysql.connector.connect(
+            host="mysql-db",
+            user="user",
+            password="password",
+            database="votacion")
     except mysql.connector.Error as err:
-        return None
+        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+            print("Usuario o contraseña no validos")
+        elif err.errno == errorcode.ER_BAD_DB_ERROR:
+            print("No existe la BD")
+        else:
+            print(err)
 
 
 @app.route('/vote/<id>', methods=['GET'])
@@ -55,7 +59,7 @@ def validate_candidate(id):
             }), 500
         
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO votes (`option`) VALUES (%s)", (id,))
+        cursor.execute("UPDATE votes SET votes = votes+1 WHERE id = %s", (id,))
         conn.commit()
         cursor.close()
         conn.close()
@@ -97,10 +101,10 @@ def create_vote():
     try:
         conn = get_db_connection()
         if not conn:
-            return jsonify({'error': 'No se puede conectar a la base de datos'}), 500
+            return jsonify({'error': NO_CONN_ERROR}), 500
             
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO votes (`option`) VALUES (%s)", (voto,))
+        cursor.execute("INSERT INTO votes (name) VALUES (%s)", (voto,))
         conn.commit()
         cursor.close()
         conn.close()
@@ -114,14 +118,14 @@ def get_votes():
     try:
         conn = get_db_connection()
         if not conn:
-            return jsonify({'error': 'No se puede conectar a la base de datos'}), 500
+            return jsonify({'error': NO_CONN_ERROR}), 500
             
         cursor = conn.cursor(dictionary=True)
         cursor.execute("""
-            SELECT `option` as nominado, COUNT(*) as votos 
+            SELECT name, votes 
             FROM votes 
-            GROUP BY `option` 
-            ORDER BY `option`
+            GROUP BY name 
+            ORDER BY name
         """)
         results = cursor.fetchall()
         cursor.close()
@@ -131,8 +135,8 @@ def get_votes():
         votes_list = []
         for row in results:
             votes_list.append({
-                'nominado': str(row['nominado']),
-                'votos': row['votos']
+                'nominado': str(row['name']),
+                'votos': row['votes']
             })
         
         return jsonify(votes_list), 200
@@ -152,10 +156,10 @@ def get_vote_by_option(option):
     try:
         conn = get_db_connection()
         if not conn:
-            return jsonify({'error': 'No se puede conectar a la base de datos'}), 500
+            return jsonify({'error': NO_CONN_ERROR}), 500
             
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT COUNT(*) as count FROM votes WHERE `option` = %s", (option,))
+        cursor.execute("SELECT COUNT(*) as count FROM votes WHERE name = %s", (option,))
         result = cursor.fetchone()
         cursor.close()
         conn.close()
