@@ -4,8 +4,8 @@ services:
     environment:
       MYSQL_DATABASE: 'votacion'
       MYSQL_USER: 'user'
-      MYSQL_PASSWORD: /run/secrets/db_password
-      MYSQL_ROOT_PASSWORD: /run/secrets/db_root_password
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
       MYSQL_ROOT_HOST: '%'
     secrets:
       - db_password
@@ -25,12 +25,12 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "8081:80"
+      - "8082:80"
     depends_on:
       - backend
 
 secrets:
    db_password:
-     file: db_password.txt
+     file: ./run/secrets/db_password.txt
    db_root_password:
-     file: db_root_password.txt
+     file: ./run/secrets/db_root_password.txt
