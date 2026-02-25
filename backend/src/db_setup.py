@@ -27,8 +27,8 @@ def create_table():
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS votes (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            `option` INT NOT NULL,
-            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            name VARCHAR(20) NOT NULL,
+            votes INT DEFAULT 0
         )
     """)
     conn.commit()
