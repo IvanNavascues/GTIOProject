@@ -26,16 +26,25 @@ $(document).ready(function () {
             update(data)
         }
     });
-
+/*
+    data={
+        "1":"555",
+        "7":"8979",
+		"8":"4",
+		"12":"44444",
+		"4":"0"
+	}
+    update(data)
+*/
     function update(data) {
-        for (let i = 1; i < Object.keys(data).length; i++) {
-
+        for (let i = 0; i < Object.keys(data).length; i++) {
+            
             var id = Object.keys(data)[i]
             var img_source = "imagenes/" + id + ".webp"
             var nombre = leyenda[id]
 
             var col = document.createElement("div")
-            col.className = "col"
+            col.className = "col-md "
             var row1 = document.createElement("div")
             row1.className = "row"
             var row2 = document.createElement("div")
