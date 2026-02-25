@@ -1,21 +1,21 @@
 $(document).ready(function () {
 
     var leyenda = {
-        "1": "Carlos Fustel",
-        "2": "Claudia Arenas",
-        "3": "Cristina Lora",
-        "4": "Elena Matateyou",
-        "5": "Guille Toledano",
-        "6": "Guillo Rist",
-        "7": "Ivan Rojo",
-        "8": "JaviCrespo",
-        "9": "JuditGaruz",
-        "10": "Laura Munyoz",
-        "11": "Lucia Casani",
-        "12": "Maria Cruz",
-        "13": "Martin Yanyez",
-        "14": "Olivia Bay",
-        "15": "Salma De Diego"
+        "0": "Carlos Fustel",
+        "1": "Claudia Arenas",
+        "2": "Cristina Lora",
+        "3": "Elena Matateyou",
+        "4": "Guille Toledano",
+        "5": "Guillo Rist",
+        "6": "Ivan Rojo",
+        "7": "JaviCrespo",
+        "8": "JuditGaruz",
+        "9": "Laura Munyoz",
+        "10": "Lucia Casani",
+        "11": "Maria Cruz",
+        "12": "Martin Yanyez",
+        "13": "Olivia Bay",
+        "14": "Salma De Diego"
     }
 
     
