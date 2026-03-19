@@ -18,15 +18,16 @@ $(document).ready(function () {
         "15": "Salma De Diego"
     }
 
-/*
+
     $.ajax({
         type: "GET",
         url: "http://localhost:5000/votes",
         success: function (data) {
-            update(data)
+            mostrar(data)
         }
     });
-*/
+
+/*
     data={
         "1":"555",
         "7":"8979",
@@ -35,7 +36,7 @@ $(document).ready(function () {
 		"4":"108"
 	}
     mostrar(data)
-
+*/
 
     function mostrar(data) {
         let max = 0
